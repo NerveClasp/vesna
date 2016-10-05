@@ -31,7 +31,7 @@ void loop() {
   int del = 0;
 
   bool hrchange = hr != hour;
-  // Start an animation if there was a change in hours.
+  // === Start a hourly animation if there was a change in hours.
   if(hrchange){
     // 5000 ms animation
     // blink twice
@@ -81,6 +81,7 @@ void loop() {
       }
       del = 2400-(100*(hour+2))-(100*(hour-1));
     }
+    // The end on the hourly animation
   }else{
     for(int i=2; i<14; i++){
       if(i!=hour+2 || i!=min+2){
@@ -96,6 +97,9 @@ void loop() {
       digitalWrite(min+2, HIGH);
       delay(200);
     }
+    if (hour == min){
+      digitalWrite(min+2, LOW); // Keeping hours lit after minutes blinking.
+    }
     // I played with seconds blinking, and decided to hardcode two quick blinks.
     for(int i = 0; i<3; i++){
       digitalWrite(sec+2, LOW);
@@ -104,6 +108,9 @@ void loop() {
       delay(50);
       if(sec == hour){
         digitalWrite(sec+2, LOW); // Keep the hour led lit after blinking seconds.
+      }
+      if (sec == min && exMin == 0) {
+        digitalWrite(min+2, LOW) // Keep the minutes led lit after blinking seconds if if is aliquot to 5 (minutes modulo 5 equals 0).
       }
     }
   }
