@@ -110,7 +110,7 @@ void loop() {
         digitalWrite(sec+2, LOW); // Keep the hour led lit after blinking seconds.
       }
       if (sec == min && exMin == 0) {
-        digitalWrite(min+2, LOW) // Keep the minutes led lit after blinking seconds if if is aliquot to 5 (minutes modulo 5 equals 0).
+        digitalWrite(min+2, LOW); // Keep the minutes led lit after blinking seconds if if is aliquot to 5 (minutes modulo 5 equals 0).
       }
     }
   }
